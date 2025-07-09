@@ -79,21 +79,20 @@ struct node *swap(struct node *first)
     struct node *prev = NULL;
     struct node *curr = first;
 
-    first = curr->link; // New head after first swap
+    first = curr->link; 
 
     while (curr != NULL && curr->link != NULL)
     {
         struct node *next = curr->link;
         struct node *nextPair = next->link;
 
-        // Swap
+        //swap
         next->link = curr;
         curr->link = nextPair;
 
         if (prev != NULL)
             prev->link = next;
 
-        // Move pointers forward
         prev = curr;
         curr = nextPair;
     }

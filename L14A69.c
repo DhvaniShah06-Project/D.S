@@ -88,40 +88,41 @@ struct node *deleteElement(struct node *first)
         printf("Element To Delete is not in List\n");
         return first;
     }
-if (first == last) {
-    printf("Deleting last remaining node: %d\n", save->info);
-    free(save);
-    first = last = NULL; // RESET both to avoid dangling pointers
-    return first;
-}
-
-  if(save == first){
-     printf("First\n");
-    printf("Element To delete : %d\n",save->info);
-    struct node *temp = first;
-    first = first->link;
-    last->link = first;
-    printf("Deleted First Node: %d\n", temp->info);
-    free(temp);
-    return first;
-}
-
-    if(save == last){
-        printf("Last\n");
-        struct node *temp = last;
-        printf("%d\n",temp->info);
-        last = pre;
-        last->link = first;
-        printf("Last Node deleted %d\n",temp->info);
-        free(temp);
+    if (first == last)
+    {
+        printf("Deleting last remaining node: %d\n", save->info);
+        free(save);
+        first = last = NULL; // RESET both to avoid
         return first;
-    
     }
 
-
-    if(save!= first && save!=last)
+    if (save == first)
     {
-        printf("Normal Element To delete : %d\n",save->info);
+        printf("First\n");
+        printf("Element To delete : %d\n", save->info);
+        struct node *temp = first;
+        first = first->link;
+        last->link = first;
+        printf("Deleted First Node: %d\n", temp->info);
+        free(temp);
+        return first;
+    }
+
+    if (save == last)
+    {
+        printf("Last\n");
+        struct node *temp = last;
+        printf("%d\n", temp->info);
+        last = pre;
+        last->link = first;
+        printf("Last Node deleted %d\n", temp->info);
+        free(temp);
+        return first;
+    }
+
+    if (save != first && save != last)
+    {
+        printf("Normal Element To delete : %d\n", save->info);
         printf("Delete Element\n");
         pre->link = save->link;
         free(save);
@@ -135,7 +136,6 @@ struct node *insertEnd(struct node *first)
     scanf("%d", &value);
     struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->info = value;
-    struct node *save = first;
     if (first == NULL)
     {
         newNode->link = newNode;
@@ -157,11 +157,6 @@ void display(struct node *first)
         printf("Empty\n");
         return;
     }
-    // if (first == last)
-    // {
-    //     printf("%d\n", first->info);
-    //     return;
-    // }
     struct node *save = first;
     do
     {
