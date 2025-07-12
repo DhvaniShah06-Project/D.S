@@ -97,8 +97,9 @@ void delete(struct node *first)
         if (count % 2 != 0)
         {
             printf("Delete Element : %d\n",save->info);
-            save->lptr->rptr = save->rptr;
             save->rptr->lptr = save->lptr;
+            save->lptr->rptr = save->rptr;
+
             free(save);
         }
     }
