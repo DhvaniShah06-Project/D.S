@@ -68,9 +68,7 @@ int display(struct node *first)
         printf("Empty List\n");
         return 0;
     }
-    // struct node *temp2 = first;
-    // first = first->link;
-    // printf("first info : %d",first->info);
+   
     do
     {
         printf("%d-->", temp->info);

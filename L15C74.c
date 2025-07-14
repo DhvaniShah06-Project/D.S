@@ -102,8 +102,8 @@ void playNext(struct node *first)
     }
 
     curr = curr->rptr;
-            printf("--> %s (Current)  <| || |>\n", curr->Songs);
-    // display(first);
+            // printf("--> %s (Current)  <| || |>\n", curr->Songs);
+    display(first);
 }
 void playPrev(struct node *)
 {
@@ -113,7 +113,7 @@ void playPrev(struct node *)
     }
 
     curr = curr->lptr;
-            printf("--> %s (Current)  <| || |>\n", curr->Songs);
+            // printf("--> %s (Current)  <| || |>\n", curr->Songs);
 
-    // display(first);
+    display(first);
 }
