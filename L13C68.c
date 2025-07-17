@@ -86,7 +86,6 @@ struct node *swap(struct node *first)
         struct node *next = curr->link;
         struct node *nextPair = next->link;
 
-        //swap
         next->link = curr;
         curr->link = nextPair;
 

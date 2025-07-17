@@ -15,7 +15,6 @@ struct node
 };
 struct node *curr = NULL;
 struct node *first = NULL;
-struct node *last = NULL;
 
 int main()
 {
