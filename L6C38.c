@@ -4,7 +4,7 @@
 int top = -1;
 char s[100];
 void push (char);
-void pop(char);
+void pop();
 void display();
 int main()
 {
@@ -15,7 +15,7 @@ int main()
     int len = strlen(input);
     for(;i<=len-1;i++){
         if(input[i]=='*'){
-            pop(input[i-1]);
+            pop();
         }
         else{
             push(input[i]);
@@ -45,7 +45,7 @@ void push(char a)
     s[top] = a;
 }
 
-void pop(char b)
+void pop()
 {
     top--;
     
