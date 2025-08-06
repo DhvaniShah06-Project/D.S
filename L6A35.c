@@ -35,14 +35,14 @@ int main()
 
 void check()
 {
-    char  x;
+    char  x,original[50],next;
     int i = 0;
-    char original[50];
+   
     printf("Enter To Check : ");
     scanf("%s", original);
     top++;
     s[top] = 'c';
-    char next;
+    
     next = original[i];
     // i++;
     while (next != 'c')
