@@ -65,9 +65,8 @@ int checkTree(struct node *root1,struct node *root2)
 {
     struct node *temp1 =root1;
     struct node *temp2 = root2;
-    printf("Here");
 
-    if(temp1==NULL||temp2==NULL)
+    if(temp1==NULL&&temp2==NULL)
     {
         return 1;
     }
@@ -77,7 +76,8 @@ int checkTree(struct node *root1,struct node *root2)
         printf("Not Symmetric\n");
         return 0;
     }
-    else if(temp1->info == temp2->info){
+    else if(temp1->lptr !=NULL && temp1->rptr!=NULL && temp2->lptr!=NULL && temp2->rptr!=NULL)
+    if(temp1->info == temp2->info){
         checkTree(temp1->lptr,temp2->rptr);
         checkTree(temp1->rptr,temp2->lptr);
         return 1;

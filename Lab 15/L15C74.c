@@ -5,7 +5,6 @@
 struct node *insEnd(struct node *);
 void playNext(struct node *);
 void playPrev(struct node *);
-// delete();
 void display(struct node *);
 struct node
 {

@@ -1,36 +1,42 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "stdio.h"
+#include "stdlib.h"
+#include"string.h"
 
-struct node *insert(struct node *, int);
-struct node *createNode(int);
-struct node *searchNode(struct node *, int);
-struct node *delete(struct node *, int);
-struct node *findDelete(struct node *);
-void inorder(struct node *root);
-void preOrder(struct node *root);
-void postOrder(struct node *root);
 
 struct node
 {
     int info;
+    char name[200];
     struct node *lptr;
     struct node *rptr;
 };
+
+struct node *insert(struct node *, int,char []);
+struct node *createNode(int,char []);
+struct node *searchNode(struct node *, int);
+struct node *delete(struct node *, int);
+struct node *findDelete(struct node *);
+void inorder(struct node *root);
+void revinorder(struct node *root);
+
 int main()
 {
     int choice, value, x, a;
+    char name[100];
     struct node *root = NULL;
 
     while (1)
     {
-        printf("\n1 To Insert\n2 To Delete \n3 To Search\n4 To preorder Travesal\n5 To PostOrder Traversal\n6 To Inorder Travaersal\n7 To Exit\n");
+        printf("1 To Insert\n2 To Delete \n3 To Search\n4 To Ascending\n5 To Descending\n6 To Exit\n");
         scanf("%d", &choice);
         switch (choice)
         {
         case 1:
             printf("Enter Node Value : ");
             scanf("%d", &value);
-            root = insert(root, value);
+              printf("Enter Name : ");
+            scanf("%s",&name);
+            root = insert(root, value,name);
             break;
         case 2:
             printf("Enter To Delete : ");
@@ -42,44 +48,48 @@ int main()
             scanf("%d", &x);
             searchNode(root, x);
             break;
-
-        case 4:
-            preOrder(root);
+            case 4:
+            printf("---Printing In Ascending Order---\n");
+           revinorder(root);
+            printf("NULL\n");
             break;
-        case 5:
-            postOrder(root);
-            break;
-        case 6:
+            case 5:
+            printf("---Printing In Descending Order---\n");
             inorder(root);
+            printf("NULL\n");
             break;
-        case 7:
+            case 6:
             printf("Exiting");
             return 0;
         }
     }
 }
 
-struct node *createNode(int value)
+
+
+
+struct node *createNode(int value,char name[])
 {
     struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->info = value;
+    strcpy(newNode->name,name);
     newNode->lptr = newNode->rptr = NULL;
     return newNode;
 }
 
-struct node *insert(struct node *root, int value)
+struct node *insert(struct node *root, int value,char name[])
 {
     if (root == NULL)
     {
-        root = createNode(value);
+        root = createNode(value,name);
     }
-    if (root->info > value)
+    if (strcmp(root->name,name) > 0)
     {
-        root->lptr = insert(root->lptr, value);
+        root->rptr = insert(root->rptr, value,name);
     }
-    else if (root->info < value)
+    else if (strcmp(root->name,name) < 0)
     {
-        root->rptr = insert(root->rptr, value);
+        root->lptr = insert(root->lptr, value,name);
     }
     return root;
     // printf("Main : %d",root->info);
@@ -92,18 +102,21 @@ struct node *searchNode(struct node *root, int x)
     if (root == NULL)
     {
         printf("Not Found\n");
-        return 0;
+        return NULL;
     }
     if (x == root->info)
     {
-        printf("%d Found\n", root->info);
+        printf("%d %s Found\n", root->info,root->name);
+        return root;
     }
     if (x > root->info)
     {
+        // printf("%d to find - %d\n", root->info,x);
         return searchNode(root->rptr, x);
     }
     else if (x < root->info)
     {
+        // printf("%d to find - %d\n", root->info,x);
         return searchNode(root->lptr, x);
     }
 }
@@ -136,12 +149,7 @@ struct node *delete(struct node *root, int x)
             struct node *save = findDelete(root->rptr);
              root->info = save->info;
             root->rptr = delete(root->rptr, save->info);
-            // while (save->lptr != NULL)
-            // {
-            //     save = save->lptr;
-            // }
-            // root->info = save->info;
-            // root->rptr = delete(root->rptr, save->info);
+
         }
     }
    else if (x > root->info)
@@ -166,6 +174,7 @@ struct node *findDelete(struct node *root)
 }
 
 
+
 void inorder(struct node *root)
 {
     if (root == NULL)
@@ -173,28 +182,17 @@ void inorder(struct node *root)
         return;
     }
     inorder(root->lptr);
-    printf("%d-->", root->info);
+    printf("-->%d %s\n", root->info,root->name);
     inorder(root->rptr);
 }
 
-void preOrder(struct node *root)
+void revinorder(struct node *root)
 {
-    if (root == NULL)
+     if (root == NULL)
     {
         return;
     }
-    printf("%d-->", root->info);
-    preOrder(root->lptr);
-    preOrder(root->rptr);
-}
-
-void postOrder(struct node *root)
-{
-    if (root == NULL)
-    {
-        return;
-    }
-    preOrder(root->lptr);
-    preOrder(root->rptr);
-    printf("%d-->", root->info);
+    revinorder(root->rptr);
+     printf("-->%d %s\n", root->info ,root->name);
+     revinorder(root->lptr);
 }

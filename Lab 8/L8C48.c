@@ -52,7 +52,7 @@ int main()
 
 void insertFirst(int val)
 {
-    if (f == -0)
+    if (f == 0)
     {
         printf("Front OverFlow\n");
         return;
