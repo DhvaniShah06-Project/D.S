@@ -20,7 +20,7 @@ void Insertion_sort(int a[], int size)
     int i = 1;
     while (i < size)
     {
-        int key = a[i] ;
+        int key = a[i];
         int j = i - 1;
         while (j >= 0 && a[j] > key)
         {

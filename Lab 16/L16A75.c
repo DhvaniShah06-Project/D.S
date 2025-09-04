@@ -194,7 +194,7 @@ void postOrder(struct node *root)
     {
         return;
     }
-    preOrder(root->lptr);
-    preOrder(root->rptr);
+    postOrder(root->lptr);
+    postOrder(root->rptr);
     printf("%d-->", root->info);
 }

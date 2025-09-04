@@ -1,8 +1,8 @@
  #include "stdio.h"
  #include <stdlib.h>
 
+struct node *insert(struct node *, int);
 struct node *createNode(int);
-void insert(struct node* root);
 void inOrder(struct node *root);
 int compare(struct node *,struct node *);
 
@@ -63,17 +63,75 @@ int main()
     return 0;
 }
 
+
+
+
+
+
 struct node *createNode(int value)
 {
     struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->info = value;
-    newNode->lptr=newNode->rptr=NULL;
+    newNode->lptr = newNode->rptr = NULL;
     return newNode;
+}
+
+struct node *insert(struct node *root, int value)
+{
+    if (root == NULL)
+    {
+        root = createNode(value);
+    }
+    if (root->info > value)
+    {
+        root->lptr = insert(root->lptr, value);
+    }
+    else if (root->info < value)
+    {
+        root->rptr = insert(root->rptr, value);
+    }
+    return root;
+    // printf("Main : %d",root->info);
 }
 
 
 
-struct node* search(struct node* root, int value) {
+
+
+  
+
+void inOrder(struct node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    inOrder(root->lptr);
+    printf("%d-->", root->info);
+    inOrder(root->rptr);
+}
+
+
+
+int compare(struct node *root1 , struct node *root2)
+{
+    printf("%d %d\n",root1->info,root2->info);
+    if(root1==NULL || root2==NULL)
+    {
+        return 0;
+    }
+
+    if( root1->lptr==NULL&&root2->lptr!=NULL || root1->rptr==NULL&&root2->rptr!=NULL || root1->info != root2->info)
+    {
+        return 1;
+    }
+    else if(root1->info == root2->info && compare(root1->lptr,root2->lptr) &&  compare(root1->rptr,root2->rptr)){
+        return 0;
+    }
+    // printf("%d-->", root->info);
+}
+
+/*struct node* search(struct node* root, int value) {
     if (root == NULL) return NULL;
     if (root->info == value) return root;
 
@@ -81,10 +139,8 @@ struct node* search(struct node* root, int value) {
     if (found != NULL) return found;
 
     return search(root->rptr, value);
-}
 
-
-void insert(struct node* root) {
+    void insert(struct node* root) {
     int parentValue, newValue, choice;
     printf("\nEnter parent node value: ");
     scanf("%d", &parentValue);
@@ -118,36 +174,12 @@ void insert(struct node* root) {
     }
    
 }
-
-
-
-  
-
-void inOrder(struct node *root)
+struct node *createNode(int value)
 {
-    if (root == NULL)
-    {
-        return;
-    }
-    inOrder(root->lptr);
-    printf("%d-->", root->info);
-    inOrder(root->rptr);
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    newNode->info = value;
+    newNode->lptr=newNode->rptr=NULL;
+    return newNode;
 }
+}*/
 
-int compare(struct node *root1 , struct node *root2)
-{
-    printf("%d %d\n",root1->info,root2->info);
-    if(root1==NULL || root2==NULL)
-    {
-        return 0;
-    }
-
-    if( root1->lptr==NULL&&root2->lptr!=NULL || root1->rptr==NULL&&root2->rptr!=NULL || root1->info != root2->info)
-    {
-        return 1;
-    }
-    else if(root1->info == root2->info && compare(root1->lptr,root2->lptr) &&  compare(root1->rptr,root2->rptr)){
-        return 0;
-    }
-    // printf("%d-->", root->info);
-}
