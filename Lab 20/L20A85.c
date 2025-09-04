@@ -1,14 +1,16 @@
 #include "stdio.h"
 #define n 10
-int hashset[10];
+int hashset[n];
 void display();
 void add(int);
+void init();
 int main()
 {
     int choice, value;
+    init();
     while (1)
     {
-        printf("1 To Insert In Hashset\n 2 To Display\n  3 To Exit");
+        printf("1 To Insert In Hashset\n2 To Display\n3 To Exit\n");
             scanf("%d",&choice);
             switch (choice)
             {

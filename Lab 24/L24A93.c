@@ -26,7 +26,7 @@ void mergeSort(int a[],int low,int high){
         merge(a,low,mid,high);
     }
 }
-
+ 
 void merge(int a[],int low,int mid,int high)
 {
     int h,i,j,k;
