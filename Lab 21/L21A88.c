@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 int Binary_search(int[], int, int);
 
 int main()

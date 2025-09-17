@@ -34,7 +34,6 @@ int Binary_search(int a[], int key, int initial, int n)
     {
         int mid = (left + right) / 2;
         if (a[mid] == key)
-
             return mid;
         else if (key < a[mid])
             return Binary_search(a, key, left, mid - 1);
