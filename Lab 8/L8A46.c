@@ -8,11 +8,9 @@ void enqueue(int);
 int dequeue();
 void display();
 
-
-
 int main()
 {
-    int choice, value,ans;
+    int choice, value, ans;
     while (1)
     {
         printf("1 To Enqueue\n2 To Dequeue\n3 To Display\n4 To Exit\n");
@@ -46,13 +44,13 @@ int main()
 
 void enqueue(int y)
 {
-    if (r >= n-1)
+    if (r >= n - 1)
     {
         printf("Queue Overflow\n");
         return;
     }
     q[++r] = y;
-    if (f = -1)
+    if (f == -1)
     {
         f = 0;
     }

@@ -50,9 +50,9 @@ void enqueue(int y)
     }
     else
     {
-        r=(r+1)%n;
+        r = (r + 1) % n;
     }
-    if (f==r)
+    if (f == r)
     {
         printf("Queue Overflow\n");
         return;
@@ -62,11 +62,11 @@ void enqueue(int y)
     {
         f = 0;
     }
-  
+
     return;
 }
 
-  int dequeue()
+int dequeue()
 {
     if (f == -1)
     {
@@ -82,20 +82,19 @@ void enqueue(int y)
     {
         f = (f + 1) % n;
     }
-    return y;       
-    
+    return y;
 }
 
 void display()
 {
-    if(f==-1)
+    if (f == -1)
     {
         printf("Queue Is Empty\n");
         return;
     }
-    int i=f;
+    int i = f;
     printf("-----Displaying Circular Queue-----\n");
-     do
+    do
     {
         printf("%d --> ", q[i]);
         i = (i + 1) % n;
